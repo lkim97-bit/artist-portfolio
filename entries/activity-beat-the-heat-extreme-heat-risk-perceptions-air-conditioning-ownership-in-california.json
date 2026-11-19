@@ -2,19 +2,14 @@
   "title": "Beat the Heat: Extreme Heat Risk Perceptions & Air Conditioning Ownership in California",
   "kind": "activity",
   "activity_type": "Publication",
-  "year": "2021",
   "description": "Publication through the Yale Program on Climate Change Communication.",
   "tags": [
     "publication",
     "climate",
     "research"
   ],
-  "details": "",
-  "external_url": "",
-  "external_label": "",
-  "collaborators": "",
-  "cover": "",
-  "gallery": [],
-  "published": true,
-  "order": 1020
+  "year": "2021",
+  "external_url": "https://climatecommunication.yale.edu/publications/beat-the-heat-extreme-heat-risk-perceptions-air-conditioning-ownership-in-california/",
+  "order": 1020,
+  "published": true
 }

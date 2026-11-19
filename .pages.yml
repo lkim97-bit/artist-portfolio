@@ -1,0 +1,113 @@
+media:
+  input: images
+  output: images
+content:
+  - name: entries
+    label: Archive entries
+    type: collection
+    path: entries
+    format: json
+    filename: '{primary}.json'
+    view:
+      primary: title
+      fields: [title, kind, activity_type, year, published]
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: kind
+        label: Show in
+        type: select
+        required: true
+        options:
+          values:
+            - name: work
+              label: Work / projects
+            - name: activity
+              label: Elsewhere / publications, talks, press, conferences
+      - name: activity_type
+        label: Activity type (for Elsewhere entries)
+        type: select
+        options:
+          values: [Publication, Talk, Press, Conference, Research, Exhibition, Workshop, Residency, Other]
+      - name: description
+        label: Short description
+        type: text
+        description: Appears on the homepage and at the top of the entry
+      - name: cover
+        label: Cover photograph
+        type: image
+      - name: tags
+        label: Tags
+        type: string
+        list: true
+        description: Add any words you want, e.g. Cloud6, Hajo, research, press, writing, collaborations
+      - name: year
+        label: Year or date
+        type: string
+      - name: details
+        label: Additional notes (optional)
+        type: text
+      - name: sections
+        label: Longer project text (optional)
+        type: object
+        list: true
+        description: Add a heading and a few paragraphs for a more elaborate project page.
+        fields:
+          - name: heading
+            label: Section title
+            type: string
+          - name: body
+            label: Section text
+            type: text
+      - name: collaborators
+        label: Collaborators (optional)
+        type: string
+      - name: external_url
+        label: Link to full project elsewhere (optional)
+        type: string
+      - name: external_label
+        label: Link label (optional)
+        type: string
+      - name: gallery
+        label: Additional photographs (optional)
+        type: object
+        list: true
+        fields:
+          - name: image
+            label: Photograph
+            type: image
+          - name: caption
+            label: Caption
+            type: text
+      - name: order
+        label: Display order (lower = first)
+        type: number
+      - name: published
+        label: Public
+        type: boolean
+  - name: settings
+    label: Your introduction and bio
+    type: file
+    path: data/settings.json
+    format: json
+    fields:
+      - name: intro
+        label: Homepage introduction
+        type: text
+      - name: bio
+        label: About / bio
+        type: text
+      - name: bio_secondary
+        label: Additional bio text
+        type: text
+      - name: email
+        label: Contact email
+        type: string
+      - name: cloud6_url
+        label: Cloud6 website
+        type: string
+      - name: hajo_url
+        label: Hajo website
+        type: string

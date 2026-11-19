@@ -11,127 +11,54 @@
 /* Elsewhere: quieter record of activities, deliberately separate from the sculptural index. */
 .elsewhere{border-top:1px solid var(--ink);padding-top:16px;min-height:70vh}.elsewhere-intro{padding:clamp(50px,9vw,140px) 0 clamp(60px,8vw,110px);max-width:1000px}.elsewhere-intro h1{font-size:clamp(82px,16vw,260px);line-height:.75;letter-spacing:-.065em;font-weight:600;margin:22px 0 35px}.mud-dot{color:var(--mud)}.elsewhere-intro>p:last-child{font-size:clamp(19px,2.1vw,31px);max-width:560px;line-height:1.2}.elsewhere-head{display:flex;justify-content:space-between;gap:20px;padding:15px 0;border-top:2px solid var(--ink);font:11px var(--mono)}.activity-row{display:grid;grid-template-columns:90px minmax(0,1fr) 130px 24px;gap:18px;align-items:start;padding:20px 0;border-top:1px solid var(--line);text-decoration:none}.activity-row:hover{color:var(--mud)}.activity-year,.activity-type{font:11px var(--mono);padding-top:6px}.activity-name{font-size:clamp(25px,3.2vw,46px);line-height:1;letter-spacing:-.035em}.activity-name small{display:block;font-size:14px;line-height:1.4;letter-spacing:0;max-width:620px;margin-top:12px;color:var(--moss)}.elsewhere-empty{border-top:1px solid var(--line);padding:40px 0 100px}.elsewhere-empty p{max-width:520px;font-size:19px}.elsewhere-foot{font:11px var(--mono);color:var(--moss);margin-top:40px}@media(max-width:600px){.activity-row{grid-template-columns:58px 1fr 16px;gap:8px}.activity-type{grid-column:2;grid-row:2}.elsewhere-intro h1{font-size:clamp(70px,18vw,120px)}}
 
-/* ---------------------------------------------------------------
-   LAUREN KIM / soft-focus personal web, v2
-   ADD TO THE VERY END OF THE CURRENT assets/site.css.
-   Does not touch HTML, Javascript, CMS, Index, or In Circulation.
-   --------------------------------------------------------------- */
-
-/* A quiet, old-web page rather than a designed paper collage. */
-:root {
-  --ground: #e8e6dc;
-  --ink: #272a22;
-  --moss: #55604c;
-  --mud: #80553f;
-  --line: #b2afa5;
-  --sans: Georgia, 'Times New Roman', serif;
-  --mono: 'Courier New', Courier, monospace;
+/* LOOSER OPTICAL HOMEPAGE — 2026-11-19
+   Paste at END of assets/site.css, AFTER the previous Optical Home patch.
+   CSS only: Index, activity page, CMS and data are unchanged.
+*/
+/* Return to a personable sans; only the homepage and site heading are affected. */
+.masthead .identity,
+.masthead .identity-alt,
+.masthead .tiny-note,
+.masthead nav a,
+.optical-topline,
+.optical-work > span,
+.optical-specimen > span,
+.optical-specimen > span small,
+.optical-side-note {
+  font-family: 'Alegreya Sans', 'Trebuchet MS', sans-serif !important;
+  font-style: normal !important;
 }
-
-body { background: var(--ground); }
-
-/* Keep only one near-invisible field of moving noise from older patches. */
-body::before {
-  z-index: 10;
-  opacity: .07;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.52' numOctaves='2' seed='6' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' opacity='.4' filter='url(%23grain)'/%3E%3C/svg%3E");
-  background-size: 180px 180px;
-  mix-blend-mode: multiply;
-  animation: softWebDrift 34s ease-in-out infinite alternate;
+.masthead .identity{font-size:25px!important;font-weight:600!important;letter-spacing:-.015em!important}
+.masthead .identity-alt{font-size:12px!important;font-weight:400!important}
+.masthead nav a{font-size:14px!important;font-weight:500!important}
+.optical-topline{font-size:12px!important;letter-spacing:.015em}
+.optical-work > span,.optical-specimen > span{
+  font-size:13px!important;font-weight:400!important;line-height:1.25!important;
+  color:#777!important;margin-top:6px!important;
 }
-@keyframes softWebDrift {
-  from { transform: translate(-.5%, -.3%); }
-  to { transform: translate(.5%, .3%); }
+.optical-specimen > span small{font-size:10px!important;font-weight:400!important}
+/* Keep photos perfectly flat and at their natural aspect ratios.
+   Looser constellation: an off-center triangular sequence, not three tidy columns. */
+.optical-field{height:730px!important;max-width:none!important}
+.optical-work-one{left:7%!important;top:82px!important;width:min(26%,310px)!important;right:auto!important}
+.optical-specimen{left:69%!important;top:26px!important;width:min(16%,190px)!important;right:auto!important}
+.optical-work-two{left:44%!important;top:330px!important;width:min(20%,240px)!important;right:auto!important}
+/* Remove the extra 'A closer look' annotation; the microscope caption suffices. */
+.optical-side-note{display:none!important}
+.optical-field .optical-work{transition:none!important}
+.optical-field .optical-work:hover{transform:none!important}
+/* Keep phone layout loose without overlapping captions or images. */
+@media(max-width:800px){
+  .optical-field{height:740px!important}
+  .optical-work-one{left:4%!important;top:105px!important;width:43%!important}
+  .optical-specimen{left:62%!important;top:25px!important;width:28%!important}
+  .optical-work-two{left:50%!important;top:395px!important;width:35%!important}
 }
-
-/* Fix: NO white, cream, tan, colored, or cutout boxes behind photos. */
-.opening .plate::before,
-.opening.opening-editorial .plate::before,
-.opening-editorial .plate-one::before,
-.opening-editorial .plate-two::before {
-  content: none !important;
-  display: none !important;
-  background: none !important;
-  box-shadow: none !important;
-  border: 0 !important;
-  clip-path: none !important;
+@media(max-width:540px){
+  .optical-field{height:700px!important}
+  .optical-work-one{left:2%!important;top:120px!important;width:54%!important}
+  .optical-specimen{left:62%!important;top:12px!important;width:34%!important}
+  .optical-work-two{left:44%!important;top:415px!important;width:47%!important}
+  .optical-work > span,.optical-specimen > span{font-size:12px!important}
 }
-
-/* Soft atmospheric bloom, not a visible rectangular backing layer. */
-.opening .plate::after,
-.opening.opening-editorial .plate::after {
-  content: '' !important;
-  display: block !important;
-  position: absolute !important;
-  inset: 15% 7% 18% !important;
-  z-index: -1 !important;
-  border-radius: 50% !important;
-  background: rgba(86, 86, 72, .16) !important;
-  opacity: .7 !important;
-  filter: blur(46px) !important;
-  transform: scale(1.12) !important;
-  pointer-events: none;
-  box-shadow: none !important;
-}
-
-/* Fix: upright, original proportions, no geometric masks or photo frames. */
-.opening .plate,
-.opening.opening-editorial .plate,
-.opening .plate:hover,
-.opening .plate:focus-visible,
-.opening.opening-editorial .plate:hover,
-.opening.opening-editorial .plate:focus-visible {
-  --r: 0deg !important;
-  transform: none !important;
-  rotate: none !important;
-  filter: none !important;
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
-}
-
-.opening .plate img,
-.opening.opening-editorial .plate img {
-  width: 100%;
-  height: auto !important;
-  max-height: none !important;
-  object-fit: contain !important;
-  clip-path: none !important;
-  transform: none !important;
-  rotate: none !important;
-  filter: none !important;
-  box-shadow: none !important;
-  background: transparent !important;
-  border: none !important;
-  transition: filter .8s ease, opacity .8s ease;
-}
-
-/* Slight photographic softness on hover, then crisp again. */
-.opening .plate:hover img,
-.opening .plate:focus-visible img { filter: blur(1.35px) saturate(.88) !important; }
-
-/* Less like a studio identity system, more like an artist's own HTML page. */
-.masthead { border-bottom: 1px dotted var(--moss); }
-.identity { font-family: Georgia, 'Times New Roman', serif; font-weight: normal; }
-.identity-alt { font: 12px/1.4 Georgia, 'Times New Roman', serif; }
-.mast-side nav a { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
-.mast-side nav a.active { text-decoration-style: wavy; }
-.opening-label { font: 11px/1.5 'Courier New', Courier, monospace; letter-spacing: 0; }
-.opening .plate-note { font: 12px/1.3 Georgia, 'Times New Roman', serif; }
-.opening .plate-note b { font-weight: normal; }
-.opening-footnote a { text-decoration: underline; }
-
-/* Keep the existing filter layout, but make the interfaces feel less polished. */
-.catalogue { border-top: 1px dotted var(--moss); }
-.catalogue-head h1 { font-family: Georgia, 'Times New Roman', serif; font-weight: normal; }
-.register-name { font-family: Georgia, 'Times New Roman', serif; font-weight: normal; }
-.footer { border-top: 1px dotted var(--moss); }
-.footer a { text-decoration: underline; }
-
-@media (prefers-reduced-motion: reduce) {
-  body::before { animation: none !important; }
-  .opening .plate img { transition: none !important; }
-}
-
-@media (prefers-reduced-motion: reduce) { body::before { animation:none; } }
 

@@ -31,7 +31,7 @@
 .masthead .identity{font-size:25px!important;font-weight:600!important;letter-spacing:-.015em!important}
 .masthead .identity-alt{font-size:12px!important;font-weight:400!important}
 .masthead nav a{font-size:14px!important;font-weight:500!important}
-.optical-topline{font-size:12px!important;letter-spacing:.015em}
+.optical-topline{font-size:12px!important;letter-spacing:.015em} 
 .optical-work > span,.optical-specimen > span{
   font-size:13px!important;font-weight:400!important;line-height:1.25!important;
   color:#777!important;margin-top:6px!important;
@@ -61,4 +61,3 @@
   .optical-work-two{left:44%!important;top:415px!important;width:47%!important}
   .optical-work > span,.optical-specimen > span{font-size:12px!important}
 }
-

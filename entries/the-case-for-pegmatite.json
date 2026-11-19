@@ -1,0 +1,23 @@
+{
+  "title": "The Case for Pegmatite",
+  "kind": "work",
+  "description": "Pegmatite Salesman is a place-based sculpture inspired by Connecticut’s history of pegmatite mining. Once bound together in a single rock, minerals such as feldspar, mica, and beryl were extracted and dispersed into global industrial supply chains. Modeled after an early twentieth-century traveling salesman’s suitcase, the sculpture reassembles these fragments into a strange, speculative collection of geological specimens. Accompanied by historical research and fictional field notes, the project explores what it means to piece back together a material known primarily through its parts.",
+  "cover": "images/Pegmatite Website Description(2).png",
+  "tags": [
+    "Cloud6, collaborations, archive"
+  ],
+  "year": "2025",
+  "sections": [
+    {
+      "body": "Drawing from salesman’s sample cases in the early twentieth century, Pegmatite Salesman showcases the many industrial lineages of pegmatite, an igneous rock that abounds in Connecticut.\n\nPegma means to “to fasten” or “congeal” in Greek. Pegmatite becomes both material and metaphor: a record of compression and assembly across geological and industrial processes.\n\nPegmatite is also a rock defined by its unmaking. For nearly two centuries, Connecticut's pegmatite formations were systematically disaggregated. Feldspar extracted for glass and ceramics, mica for electronics and wartime insulation, garnet for abrasives; these components were pulled from the whole and routed into supply chains of aerospace, military manufacturing, and domestic life.\n\nDrawing from the aesthetics of mineral display cases and taxonomic classification, this piece reconstructs pegmatite from the elements that were extracted from it. Beyond utility, pegmatite’s unexpected texture, weight, and material strangeness is foregrounded."
+    }
+  ],
+  "collaborators": "Jane Zhang",
+  "gallery": [
+    {
+      "image": "images/5.png"
+    },
+    {}
+  ],
+  "published": false
+}

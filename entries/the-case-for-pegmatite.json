@@ -17,7 +17,9 @@
     {
       "image": "images/5.png"
     },
-    {}
+    {
+      "image": "images/6.png"
+    }
   ],
   "published": true
 }

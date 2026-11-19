@@ -49,3 +49,58 @@ function renderDetail(e){if(!e){app.innerHTML='<p>Entry not found. <a href="#/">
 function renderAbout(){app.innerHTML=`<section class="about"><p class="small-label">About the practice</p><h1>About</h1><div class="about-columns"><div><p class="about-lead">${esc(settings.bio||'Artist and researcher.')}</p><p>${esc(settings.bio_secondary||'')}</p></div><aside><div class="side-heading">Links</div><p>${settings.cloud6_url?`<a href="${esc(settings.cloud6_url)}" target="_blank" rel="noopener">Cloud6 ↗</a>`:'Cloud6 — link coming soon'}</p><p>${settings.hajo_url?`<a href="${esc(settings.hajo_url)}" target="_blank" rel="noopener">Hajo ↗</a>`:'Hajo'}</p><div class="side-heading">Correspondence</div><p>${settings.email?`<a href="mailto:${esc(settings.email)}">${esc(settings.email)}</a>`:'Contact coming soon'}</p></aside></div></section>`;document.getElementById('footer-count').textContent='';}
 function route(){window.scrollTo(0,0);let h=decodeURIComponent(location.hash||'#/');document.querySelectorAll('[data-nav]').forEach(a=>a.classList.toggle('active',h==='#/about'?a.dataset.nav==='about':h==='#/elsewhere'?a.dataset.nav==='elsewhere':a.dataset.nav==='index'));if(h==='#/about')renderAbout();else if(h==='#/elsewhere')renderElsewhere();else if(h.startsWith('#/entry/'))renderDetail(entries.find(e=>e.slug===h.slice(8)));else renderIndex()}
 Promise.resolve().then(()=>{const node=document.getElementById('archive-data');if(node){const d=JSON.parse(node.textContent);return [d.entries,d.settings]}return Promise.all([fetch('data/entries.json').then(r=>r.json()),fetch('data/settings.json').then(r=>r.json())])}).then(([list,s])=>{entries=list.filter(e=>e.published!==false).sort((a,b)=>Number(a.order??999)-Number(b.order??999)||String(a.title).localeCompare(b.title));settings=s;const email=document.getElementById('email-nav');if(settings.email)email.href='mailto:'+settings.email;else email.hidden=true;window.addEventListener('hashchange',route);route()}).catch(err=>{app.innerHTML='<p>Could not load the archive. See the README for local preview instructions.</p>';console.error(err)});
+
+/* OPTICAL HOME — additive; does not change the Index or In Circulation. */
+(function () {
+  const beforeOpticalHome = renderIndex;
+  renderIndex = function () {
+    beforeOpticalHome();
+    const opening = document.querySelector('.opening');
+    if (!opening) return;
+    const pictured = visibleEntries().filter(e => e.kind !== 'activity' && e.cover).slice(0, 2);
+    const one = pictured[0], two = pictured[1];
+    const picture = (e, name) => e ? `
+      <a class="optical-work ${name}" href="#/entry/${encodeURIComponent(e.slug)}">
+        <img src="${esc(asset(e.cover))}" alt="${esc(e.image_alt || e.title)}" loading="eager">
+        <span>${esc(e.title)}</span>
+      </a>` : '';
+    opening.innerHTML = `
+      <div class="optical-topline"><span>Selected works / an index</span><a href="#index">Browse all works ↓</a></div>
+      <div class="optical-field" aria-label="Selected photographs and microscope study">
+        ${picture(one,'optical-work-one')}
+        ${picture(two,'optical-work-two')}
+        <div class="optical-specimen">
+          <div class="optical-specimen-surface" tabindex="0" role="img" aria-label="Microscope photograph. Move pointer over the image to magnify a detail.">
+            <img src="images/microscope-study.png" alt="Magnified branching structures photographed at the microscopy lab" loading="lazy">
+            <span class="optical-lens" aria-hidden="true"></span>
+          </div>
+          <span>microscope study / 2026 <small>↗ move to inspect</small></span>
+        </div>
+        <span class="optical-side-note">A closer look</span>
+      </div>`;
+    const surface = opening.querySelector('.optical-specimen-surface');
+    const lens = surface?.querySelector('.optical-lens');
+    if (!surface || !lens) return;
+    const updateLens = (e) => {
+      const r = surface.getBoundingClientRect();
+      const x = Math.max(0, Math.min(r.width, e.clientX - r.left));
+      const y = Math.max(0, Math.min(r.height, e.clientY - r.top));
+      const lx = Math.max(0,Math.min(r.width - 1,x));
+      const ly = Math.max(0,Math.min(r.height - 1,y));
+      const zoom = 2.4;
+      lens.style.left = `${lx}px`;
+      lens.style.top = `${ly}px`;
+      lens.style.backgroundSize = `${r.width * zoom}px ${r.height * zoom}px`;
+      lens.style.backgroundPosition = `${-(lx * zoom - 54)}px ${-(ly * zoom - 54)}px`;
+    };
+    surface.addEventListener('pointerenter', e => { surface.classList.add('is-looking'); updateLens(e); });
+    surface.addEventListener('pointermove', updateLens);
+    surface.addEventListener('pointerleave', () => surface.classList.remove('is-looking'));
+    surface.addEventListener('focus', () => {
+      const r = surface.getBoundingClientRect();
+      surface.classList.add('is-looking');
+      updateLens({clientX:r.left+r.width/2,clientY:r.top+r.height/2});
+    });
+    surface.addEventListener('blur', () => surface.classList.remove('is-looking'));
+  };
+})();
